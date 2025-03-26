@@ -1,16 +1,35 @@
 import colors from "@/constants/colors";
 import { View, Text, StyleSheet, TextInput, Pressable } from "react-native";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { useState } from "react";
+import { useAuthStore } from "../context/authContext";
+import api from "../services/api";
 
 export default function Login() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
+    const login = useAuthStore((state) => state.login);
 
-    function handleSignIn() {
+    async function handleSignIn() {
+        setLoading(true);
+        try {
+            const response = await api.post("/auth/login", {
+                login: email,
+                password: password,
+            });
 
+            const token = response.data.token;
+            login(token);
+
+            router.replace("/(painel)/profile/page");
+        } catch (error) {
+            console.error("Erro ao fazer login", error);
+        } finally {
+            setLoading(false);
+        }
     }
 
     return (
@@ -47,7 +66,9 @@ export default function Login() {
                 </View>
 
                 <Pressable style={styles.button} onPress={handleSignIn}>
-                    <Text style={styles.buttonText}>Acessar</Text>
+                    <Text style={styles.buttonText}>
+                        {loading ? "Carregando..." : "Acessar"}
+                    </Text>
                 </Pressable>
 
                 <Link href={'/(auth)/signup/page'} style={styles.link}>
