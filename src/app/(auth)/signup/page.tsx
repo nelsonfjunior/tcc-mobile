@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import colors from "@/constants/colors";
-import { View, Text, StyleSheet, TextInput, Pressable, SafeAreaView, ScrollView, ActivityIndicator } from "react-native";
+import colors from "@/src/constants/colors";
+import { View, Text, StyleSheet, TextInput, Pressable, SafeAreaView, ScrollView, ActivityIndicator, Image } from "react-native";
 import { Ionicons } from '@expo/vector-icons';
 import { router } from "expo-router";
 import api from "@/src/services/api";
+import fonts from "@/src/constants/fonts";
 
 export default function SignUp() {
 
@@ -24,8 +25,8 @@ export default function SignUp() {
                 password: password,
                 role: "USER"
             });
-            
-            router.push("/"); 
+
+            router.push("/");
         } catch (error) {
             setErrorMessage("Erro ao cadastrar. Verifique os dados e tente novamente.");
         } finally {
@@ -47,7 +48,7 @@ export default function SignUp() {
                         </Pressable>
 
                         <Text style={styles.logoText}>
-                            Dev <Text style={{ color: colors.green }}>App</Text>
+                            Retro <Text style={{ color: colors.yellow }}>Photo</Text>
                         </Text>
                         <Text style={styles.slogan}>
                             Criar uma conta
@@ -59,6 +60,7 @@ export default function SignUp() {
                             <Text style={styles.label}>Nome completo</Text>
                             <TextInput
                                 placeholder="Nome completo"
+                                placeholderTextColor={colors.gray}
                                 style={styles.input}
                                 value={name}
                                 onChangeText={setName}
@@ -69,6 +71,7 @@ export default function SignUp() {
                             <Text style={styles.label}>Email</Text>
                             <TextInput
                                 placeholder="Digite seu email"
+                                placeholderTextColor={colors.gray}
                                 style={styles.input}
                                 value={email}
                                 onChangeText={setEmail}
@@ -79,6 +82,7 @@ export default function SignUp() {
                             <Text style={styles.label}>Senha</Text>
                             <TextInput
                                 placeholder="Digite sua senha"
+                                placeholderTextColor={colors.gray}
                                 style={styles.input}
                                 value={password}
                                 secureTextEntry={true}
@@ -98,6 +102,13 @@ export default function SignUp() {
                             )}
                         </Pressable>
 
+                        <View style={styles.imageView}>
+                            <Image
+                                source={require('../../../assets/logo.png')}
+                                style={styles.image}
+                            />
+                        </View>
+
                     </View>
 
                 </View>
@@ -111,7 +122,7 @@ export default function SignUp() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 34,
+        paddingTop: 20,
         backgroundColor: colors.zinc
     },
     header: {
@@ -119,15 +130,17 @@ const styles = StyleSheet.create({
         paddingRight: 14,
     },
     logoText: {
+        fontFamily: fonts.font,
         fontSize: 20,
         fontWeight: 'bold',
         color: colors.white,
         marginBottom: 8
     },
     slogan: {
-        fontSize: 34,
+        fontFamily: fonts.font,
+        fontSize: 30,
         color: colors.white,
-        marginBottom: 34
+        marginBottom: 20
     },
     form: {
         flex: 1,
@@ -139,10 +152,12 @@ const styles = StyleSheet.create({
         paddingRight: 14
     },
     label: {
+        fontFamily: fonts.font,
         color: colors.zinc,
         marginBottom: 4
     },
     input: {
+        fontFamily: fonts.font,
         borderWidth: 1,
         borderRadius: 8,
         padding: 12,
@@ -153,7 +168,7 @@ const styles = StyleSheet.create({
         paddingBottom: 14
     },
     button: {
-        backgroundColor: colors.green,
+        backgroundColor: colors.yellow,
         paddingTop: 14,
         paddingBottom: 14,
         justifyContent: 'center',
@@ -162,19 +177,34 @@ const styles = StyleSheet.create({
         borderRadius: 8
     },
     buttonText: {
+        fontFamily: fonts.font,
+        fontSize: 16,
         color: colors.white,
         fontWeight: 'bold'
     },
     backButton: {
-        backgroundColor: 'rgba(255,255,255,0.55)',
+        backgroundColor: 'rgba(255, 184, 0, 0.9)',
         alignSelf: 'flex-start',
         padding: 8,
         borderRadius: 8,
-        marginBottom: 8
+        marginBottom: 20
     },
     errorText: {
         color: "red",
         marginBottom: 10,
         textAlign: "center"
+    },
+    imageView: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    image: {
+        width: "100%",
+        height: "100%",
+        maxWidth: 400,
+        maxHeight: 400,
+        aspectRatio: 1,
+        resizeMode: "contain",
     }
 });
