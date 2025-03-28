@@ -48,7 +48,7 @@ export default function SignUp() {
                         </Pressable>
 
                         <Text style={styles.logoText}>
-                            Retro <Text style={{ color: colors.yellow }}>Photo</Text>
+                            Retro <Text style={{ color: colors["brown-white"] }}>Photo</Text>
                         </Text>
                         <Text style={styles.slogan}>
                             Criar uma conta
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 20,
-        backgroundColor: colors.zinc
+        backgroundColor: colors["brown-red"]
     },
     header: {
         paddingLeft: 14,
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
         paddingBottom: 14
     },
     button: {
-        backgroundColor: colors.yellow,
+        backgroundColor: colors["brown-red"],
         paddingTop: 14,
         paddingBottom: 14,
         justifyContent: 'center',
@@ -183,7 +183,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     backButton: {
-        backgroundColor: 'rgba(255, 184, 0, 0.9)',
+        backgroundColor: colors["brown-red-dark"],
         alignSelf: 'flex-start',
         padding: 8,
         borderRadius: 8,

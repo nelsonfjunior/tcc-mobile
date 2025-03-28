@@ -60,7 +60,7 @@ export default function Login() {
                 <View style={styles.container}>
                     <View style={styles.header}>
                         <Text style={styles.logoText}>
-                            Retro <Text style={{ color: colors.yellow }}>Photo</Text>
+                            Retro <Text style={{ color: colors["brown-white"] }}>Photo</Text>
                         </Text>
                         <Text style={styles.slogan}>
                             Recordando momentos
@@ -98,7 +98,7 @@ export default function Login() {
                         </Pressable>
 
                         <Link href={'/(auth)/signup/signup'} style={styles.link}>
-                            <Text>Ainda não possui uma conta? <Text style={{ color: colors.yellow}}>Cadastre-se</Text></Text>
+                            <Text>Ainda não possui uma conta? <Text style={{ color: colors["brown-red"]}}>Cadastre-se</Text></Text>
                         </Link>
 
                         <View style={styles.imageView}>
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 20,
-        backgroundColor: colors.zinc
+        backgroundColor: colors["brown-red"]
     },
     header: {
         paddingLeft: 14,
@@ -168,7 +168,7 @@ const styles = StyleSheet.create({
         paddingBottom: 14
     },
     button: {
-        backgroundColor: colors.yellow,
+        backgroundColor: colors["brown-red"],
         paddingTop: 14,
         paddingBottom: 14,
         justifyContent: 'center',
