@@ -9,11 +9,11 @@ export default function MainLayout(){
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name="(auth)/signup/page"
+                name="(auth)/signup/signup"
                 options={{ headerShown: false }}
             /> 
             <Stack.Screen
-                name="(painel)/profile/page"
+                name="(painel)"
                 options={{ headerShown: false }}
             />  
         </Stack>
