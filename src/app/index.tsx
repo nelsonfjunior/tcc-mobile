@@ -1,7 +1,7 @@
 import colors from "@/src/constants/colors";
 import { View, Text, StyleSheet, TextInput, Pressable, Image, SafeAreaView, ScrollView } from "react-native";
 import { Link, useRouter } from "expo-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuthStore } from "../context/authContext";
 import api from "../services/api";
 import { Poppins_500Medium, useFonts } from "@expo-google-fonts/poppins";
@@ -13,15 +13,17 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const router = useRouter();
-    const login = useAuthStore((state) => state.login);
+    const { login, loadToken, isAuthenticated } = useAuthStore();
 
-    let [fontsLoaded] = useFonts({
-        Poppins_500Medium,
-    });
+    useEffect(() => {
+        loadToken();
+    }, []);
 
-    if (!fontsLoaded) {
-        return null;
-    }
+    useEffect(() => {
+        if (isAuthenticated) {
+            router.replace("/(painel)/home");
+        }
+    }, [isAuthenticated]);
 
     async function handleSignIn() {
         setLoading(true);
@@ -32,15 +34,25 @@ export default function Login() {
             });
 
             const token = response.data.token;
-            login(token);
+            await login(token);
 
-            router.replace("/(painel)/profile/page");
+            router.replace("/(painel)/home");
         } catch (error) {
             console.error("Erro ao fazer login", error);
         } finally {
             setLoading(false);
         }
     }
+
+    let [fontsLoaded] = useFonts({
+        Poppins_500Medium,
+    });
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
+    
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
@@ -85,7 +97,7 @@ export default function Login() {
                             </Text>
                         </Pressable>
 
-                        <Link href={'/(auth)/signup/page'} style={styles.link}>
+                        <Link href={'/(auth)/signup/signup'} style={styles.link}>
                             <Text>Ainda não possui uma conta? <Text style={{ color: colors.yellow}}>Cadastre-se</Text></Text>
                         </Link>
 
