@@ -1,23 +1,23 @@
+import colors from "@/src/constants/colors";
 import { useAuthStore } from "@/src/context/authContext";
 import { useRouter } from "expo-router";
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 
 
-export default function Profile(){
+export default function Home(){
     const router = useRouter();
-    const { isAuthenticated, logout } = useAuthStore();
+    const { logout } = useAuthStore();
 
-    useEffect(() => {
-        if (!isAuthenticated) {
-            router.replace("/");
-        }
-    }, [isAuthenticated]);
+    async function handleLogout() {
+        await logout();
+        router.replace("/");
+    }
     
     return (
         <View style={styles.container}>
-            <Text>Página Perfil</Text>
-            <Pressable onPress={logout} style={styles.button}>
+            <Text>Home</Text>
+            <Pressable onPress={handleLogout} style={styles.button}>
                 <Text style={styles.buttonText}>Sair</Text>
             </Pressable>
         </View>
@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: colors.white,
     },
     button: {
         backgroundColor: "red", 
