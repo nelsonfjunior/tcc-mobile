@@ -16,10 +16,7 @@ export default function Home(){
     
     return (
         <View style={styles.container}>
-            <Text>Home</Text>
-            <Pressable onPress={handleLogout} style={styles.button}>
-                <Text style={styles.buttonText}>Sair</Text>
-            </Pressable>
+        
         </View>
 
     )
@@ -27,18 +24,10 @@ export default function Home(){
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: colors.white,
-    },
-    button: {
-        backgroundColor: "red", 
-        padding: 10, 
-        marginTop: 20 
-    },
-    buttonText: { 
-        color: "white", 
-        fontWeight: "bold" 
+        padding: 20,
+        // flex: 1,
+        // alignItems: 'center',
+        // justifyContent: 'center',
+        // backgroundColor: colors.white,
     },
 });
