@@ -18,7 +18,7 @@ export default function Home() {
 
   return (
     <SafeAreaView style={{ flex: 1 }} edges={['top']}>
-      <View style={{ flex: 1, backgroundColor: 'white', paddingHorizontal: 20, paddingVertical: 24 }}>
+      <View className="px-3 pt-5 bg-white flex-1">
         <View className="flex gap-5 h-full">
           <View className="flex justify-between items-center flex-row">
             <View>
@@ -36,7 +36,7 @@ export default function Home() {
           </View>
 
           <ScrollView>
-              <View className="flex flex-col gap-5">
+              <View className="flex flex-col gap-6">
                 {[...Array(10)].map((_, i) => (
                     <GroupPreview key={i} data={{
                     name: `Grupo ${i+1}`,
