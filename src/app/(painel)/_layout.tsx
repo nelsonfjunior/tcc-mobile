@@ -27,6 +27,16 @@ export default function TabLayout() {
                     ),
                 }}
             />
+            <Tabs.Screen
+                name="publicacoes"
+                options={{
+                    title: "Publicações",
+                    headerShown: false,
+                    tabBarIcon: ({ color, focused }) => (
+                        <Ionicons name={focused ? 'people-sharp' : 'people-outline'} color={color} size={24} />
+                    ),
+                }}
+            />
         </Tabs>
     );
 }
