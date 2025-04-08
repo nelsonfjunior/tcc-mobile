@@ -20,16 +20,6 @@ export default function TabLayout() {
             <Tabs.Screen
                 name="home"
                 options={{
-                    title: "Home",
-                    headerShown: false,
-                    tabBarIcon: ({ color, focused }) => (
-                        <Ionicons name={focused ? 'people-sharp' : 'people-outline'} color={color} size={24} />
-                    ),
-                }}
-            />
-            <Tabs.Screen
-                name="grupos"
-                options={{
                     title: "Grupos",
                     headerShown: false,
                     tabBarIcon: ({ color, focused }) => (
