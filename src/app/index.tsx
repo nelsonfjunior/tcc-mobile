@@ -34,7 +34,8 @@ export default function Login() {
             });
 
             const token = response.data.token;
-            await login(token);
+            const userId = response.data.userId;
+            await login(token, userId);
 
             router.replace("/(painel)/home");
         } catch (error) {
