@@ -47,6 +47,10 @@ export default function Home() {
                     }}/>
                 ))}
               </View>
+
+              <Pressable>
+                <Text className="text-center text-sm text-gray-500 mt-5" onPress={handleLogout} >Sair</Text>
+              </Pressable>
           </ScrollView>
         </View>
       </View>
