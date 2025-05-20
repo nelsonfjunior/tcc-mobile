@@ -11,7 +11,7 @@ export default function Publicacoes() {
     console.log("CLICOU no comentario")
   }
  return (
-    <SafeAreaView style={{ flex: 1 }} edges={['top']}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View className='px-3 pt-5 bg-white flex-1'>
         <View className="flex gap-5 h-full">
           <View className="flex justify-between items-center flex-row">
