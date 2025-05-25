@@ -1,54 +1,144 @@
-import GroupPreview from "@/src/components/groupPreview";
-import colors from "@/src/constants/colors";
-import { useAuthStore } from "@/src/context/authContext";
 import { useRouter } from "expo-router";
-import { EllipsisVertical, Search } from "lucide-react-native";
-import React from "react";
-import { View, Text, Pressable, ScrollView, SafeAreaView } from "react-native";
+import { Bell, EllipsisVertical, Search } from "lucide-react-native";
+import React, { useState } from "react";
+import {
+  FlatList,
+  Image,
+  Pressable,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+
+const DATA = [
+  {
+    id: "1",
+    nome: "Grupo da Família",
+    foto: "https://reactnative.dev/img/tiny_logo.png",
+    horario: "10:32",
+    notificacoes: 10,
+  },
+  {
+    id: "2",
+    nome: "Amigos do Futebol",
+    foto: "https://reactnative.dev/img/tiny_logo.png",
+    horario: "09:15",
+    notificacoes: 3,
+  },
+  {
+    id: "3",
+    nome: "Amigos do Futebol",
+    foto: "https://reactnative.dev/img/tiny_logo.png",
+    horario: "09:15",
+    notificacoes: 3,
+  },
+  {
+    id: "4",
+    nome: "Amigos do Futebol",
+    foto: "https://reactnative.dev/img/tiny_logo.png",
+    horario: "09:15",
+    notificacoes: 3,
+  },
+  {
+    id: "5",
+    nome: "Amigos do Futebol",
+    foto: "https://reactnative.dev/img/tiny_logo.png",
+    horario: "09:15",
+    notificacoes: 3,
+  },
+  {
+    id: "6",
+    nome: "Amigos do Futebol",
+    foto: "https://reactnative.dev/img/tiny_logo.png",
+    horario: "09:15",
+    notificacoes: 3,
+  },
+  {
+    id: "7",
+    nome: "Amigos do Futebol",
+    foto: "https://reactnative.dev/img/tiny_logo.png",
+    horario: "09:15",
+    notificacoes: 3,
+  },
+  {
+    id: "8",
+    nome: "Amigos do Futebol",
+    foto: "https://reactnative.dev/img/tiny_logo.png",
+    horario: "09:15",
+    notificacoes: 3,
+  },
+  // ... mais dados
+];
 
 export default function Home() {
+  const [selectedId, setSelectedId] = useState(null);
   const router = useRouter();
-  const { logout } = useAuthStore();
 
-  async function handleLogout() {
-    await logout();
-    router.replace("/");
-  }
+  const renderItem = ({ item }: any) => (
+    <Pressable onPress={() => {router.navigate(`/group/${item.id}`)}} className="h-[70px] shadow-[0_0_10px_rgba(0,0,0,0.03)] bg-white border border-gray-200 p-4 w-full flex flex-row items-center gap-3 rounded-3xl mb-2">
+      <Image className="rounded-full w-12 h-12" source={{ uri: item.foto }} />
+      <Text className="text-base text-gray-900 flex-1">{item.nome}</Text>
+      <View className="flex flex-col items-center gap-1">
+        <Text className="text-gray-600 font-semibold text-xs">{item.horario}</Text>
+        <Text className="bg-gray-200 text-gray-600 px-2 py-1 rounded-full text-xs">
+          {item.notificacoes}
+        </Text>
+      </View>
+    </Pressable>
+  );
 
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View className="px-3 pt-5 bg-white flex-1">
-        <View className="flex gap-5 h-full">
-          <View className="flex justify-between items-center flex-row">
-            <View>
-              <Text className="text-xs block">Hello,</Text>
-              <Text className="block text-xl font-semibold">Vinicius</Text>
-            </View>
-            <View className="flex gap-2 flex-row">
-              <Pressable className="border border-gray-500 rounded-full p-2">
-                <Search className="text-gray-500" />
-              </Pressable>
-              <Pressable className="border border-gray-500 rounded-full p-2">
-                <EllipsisVertical className="text-gray-500" />
-              </Pressable>
-            </View>
+  const ListHeader = () => (
+    <>
+      <View className="flex flex-col mb-4 shadow-[0_0_10px_rgba(0,0,0,0.03)]">
+        <View className="border border-gray-200 rounded-3xl flex-row items-center bg-white text-gray-600">
+          <View className="px-4 py-3">
+            <Search />
           </View>
-
-          <ScrollView>
-              <View className="flex flex-col gap-6">
-                {[...Array(10)].map((_, i) => (
-                    <GroupPreview key={i} data={{
-                    name: `Grupo ${i+1}`,
-                    adm: "Vinicius",
-                    description: "Descrição exemplo",
-                    image: 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=1474&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-                    id: `${i}`
-                    }}/>
-                ))}
-              </View>
-          </ScrollView>
+          <TextInput
+            className="flex-1 ml-2 h-full outline-none"
+            placeholder="Pesquisar"
+            value=""
+          />
         </View>
       </View>
-    </SafeAreaView>
+
+      <View className="flex flex-row gap-2 mb-4">
+        <Pressable className="w-max h-max rounded-3xl px-3 border border-gray-200 bg-gray-200">
+          <Text className="text-gray-600 text-sm">Todos</Text>
+        </Pressable>
+        <Pressable className="w-max h-max rounded-3xl px-3 border border-gray-200">
+          <Text className="text-gray-600 text-sm">Não lidos</Text>
+        </Pressable>
+      </View>
+    </>
+  );
+
+  return (
+    <SafeAreaProvider>
+      <SafeAreaView className="flex gap-4 flex-1 bg-[#F6F6F6]">
+        <View className="w-full h-[70px] flex flex-row items-center justify-between p-5">
+          <Text className="text-xl">Nome do app</Text>
+          <View className="flex flex-row gap-3 text-gray-900">
+            <Pressable>
+              <Bell />
+            </Pressable>
+            <Pressable>
+              <EllipsisVertical />
+            </Pressable>
+          </View>
+        </View>
+
+        <View className="flex-1 px-4 pb-5">
+          <FlatList
+            data={DATA}
+            renderItem={renderItem}
+            keyExtractor={(item) => item.id}
+            extraData={selectedId}
+            ListHeaderComponent={<ListHeader />}
+          />
+        </View>
+      </SafeAreaView>
+    </SafeAreaProvider>
   );
 }
