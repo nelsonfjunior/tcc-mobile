@@ -14,13 +14,9 @@ export default function MainLayout(){
                 options={{ headerShown: false }}
             /> 
             <Stack.Screen
-                name="(painel)/home"
+                name="(painel)"
                 options={{ headerShown: false }}
                 />  
-            <Stack.Screen
-                name="(painel)/group/[id]" 
-                options={{ headerShown: false }}
-            />  
         </Stack>
     )
 }
