@@ -24,6 +24,10 @@ export default function Layout() {
         options={{ href: null, tabBarStyle: { display: "none" } }}
       />
       <Tabs.Screen
+        name="album/[id]"
+        options={{ href: null }}
+      />
+      <Tabs.Screen
         name="add-participant/index"
         options={{
           title: "",

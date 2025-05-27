@@ -14,6 +14,10 @@ export default function Group() {
     route.navigate("..")
    }
 
+   function navigateToAlbum(){
+    route.navigate('./album/[id]')
+   }
+
   return (
     <>
       <Stack href={'/(painel)/home'}>
@@ -36,7 +40,8 @@ export default function Group() {
           <Plus size={50} className="text-gray-600"/>
           <Text className="text-gray-600">Novo álbum</Text>
         </Pressable>
-        <View className="h-[120px] bg-linear-to-t from-sky-500 to-indigo-500">
+        
+        <Pressable onPress={navigateToAlbum} className="h-[120px] bg-linear-to-t from-sky-500 to-indigo-500">
           <Image
             className="w-full h-full rounded-2xl mb-1"
             source={{ uri: "https://149616941.v2.pressablecdn.com/wp-content/uploads/2021/04/SRV-working-with-older-people-thumbnail.jpg" }}
@@ -45,7 +50,7 @@ export default function Group() {
           <View className="absolute rounded-2xl opacity-70 h-full w-full z-10 bg-gradient-to-t from-black via-20% via-black to-[#ffffff15]"></View>
 
           <Text className="w-full absolute bottom-0 mb-1 px-2 z-20 text-base font-medium text-gray-100 truncate">Fotos 222222221</Text>
-        </View>
+        </Pressable>
       </View>
     </>
   );
