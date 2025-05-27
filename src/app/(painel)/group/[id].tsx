@@ -1,6 +1,6 @@
 import Stack from "@/src/components/stack";
 import { useRouter } from "expo-router";
-import { ArrowLeft, BookPlus, EllipsisVertical, Plus } from "lucide-react-native";
+import { EllipsisVertical, Plus } from "lucide-react-native";
 import { Image, Pressable, Text, View } from "react-native";
 
 export default function Group() {
@@ -8,6 +8,10 @@ export default function Group() {
 
    function handleBackPage() {
       route.replace('/(painel)/home')
+   }
+
+   function navigateToAddAlbum(){
+    route.navigate("..")
    }
 
   return (
@@ -28,10 +32,10 @@ export default function Group() {
       </Stack>
 
       <View className="border-1 border-red-700 w-full grid grid-cols-3 flex-wrap justify-center gap-2 mt-8 px-4">
-        <View className="w-full h-[120px] bg-gray-200 rounded-2xl flex justify-center items-center">
+        <Pressable onPress={navigateToAddAlbum} className="w-full h-[120px] bg-gray-200 rounded-2xl flex justify-center items-center"> 
           <Plus size={50} className="text-gray-600"/>
           <Text className="text-gray-600">Novo álbum</Text>
-        </View>
+        </Pressable>
         <View className="h-[120px] bg-linear-to-t from-sky-500 to-indigo-500">
           <Image
             className="w-full h-full rounded-2xl mb-1"
