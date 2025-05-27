@@ -114,13 +114,17 @@ export default function Home() {
     </>
   );
 
+  function navigateToNotifications(){
+    router.navigate('/notification')
+  }
+
   return (
     <SafeAreaProvider>
       <SafeAreaView className="flex gap-4 flex-1 bg-[#F6F6F6]">
         <View className="w-full h-[70px] flex flex-row items-center justify-between p-5">
           <Text className="text-xl">Nome do app</Text>
           <View className="flex flex-row gap-3 text-gray-900">
-            <Pressable>
+            <Pressable onPress={navigateToNotifications}>
               <Bell />
             </Pressable>
             <Pressable>
