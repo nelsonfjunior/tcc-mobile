@@ -1,3 +1,4 @@
+import Stack from "@/src/components/stack";
 import { useRouter } from "expo-router";
 import { ArrowLeft, UserPlus } from "lucide-react-native";
 import { Image, Pressable, Text, View } from "react-native";
@@ -11,18 +12,14 @@ export default function Participants() {
 
   return (
     <>
-      <View className="bg-white w-full h-[70px] flex flex-row items-center gap-4 py-5 px-3 text-gray-900 border-b shadow-[0_0_10px_rgba(0,0,0,0.05)] border-b-gray-200">
-        <Pressable
-          onPress={handleBackPage}
-          className="flex flex-row items-center gap-2 flex-1"
-        >
-          <ArrowLeft className="text-gray-900" />
+      <Stack href={"/(painel)/home"}>
+        <Pressable onPress={handleBackPage} className="flex-1">
           <Text className="text-gray-900">Voltar</Text>
         </Pressable>
         <Pressable>
             <UserPlus className="text-gray-900"/>
         </Pressable>
-      </View>
+      </Stack>
 
       <View className="mt-8 flex flex-col gap-2 px-5">
         <Text className="font-semibold text-gray-900">Participantes: 3</Text>
