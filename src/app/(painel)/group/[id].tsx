@@ -11,7 +11,7 @@ export default function Group() {
    }
 
    function navigateToAddAlbum(){
-    route.navigate("..")
+    route.navigate("./add-album")
    }
 
    function navigateToAlbum(){

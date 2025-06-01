@@ -1,5 +1,7 @@
 import Stack from "@/src/components/stack";
-import { useRouter } from "expo-router";
+import { useNavigation, useRouter } from "expo-router";
+import { EllipsisVertical } from "lucide-react-native";
+import { useLayoutEffect } from "react";
 import { FlatList, Image, Pressable, Text, View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 
@@ -68,10 +70,17 @@ export default function Album() {
     <SafeAreaProvider>
       <SafeAreaView className="flex flex-1 bg-[#F6F6F6]">
         <Stack href={"/(painel)/home"}>
-          <Image
-            className="rounded-full w-10 h-10 ml-2"
-            source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
-          />
+          <View className="flex-1 flex flex-row items-center gap-4 ml-2">
+            <Image
+              className="rounded-full w-10 h-10"
+              source={{ uri: "https://reactnative.dev/img/tiny_logo.png" }}
+            />
+          </View>
+          <View className="flex flex-row gap-3 text-gray-900">
+            <Pressable>
+              <EllipsisVertical />
+            </Pressable>
+          </View>
         </Stack>
 
         <View className="flex-1 px-4">
@@ -81,6 +90,9 @@ export default function Album() {
             keyExtractor={(item) => item.id}
             ListHeaderComponent={
               <Text className="mt-4 mb-4 text-gray-600 text-xs">Total de 2 fotos</Text>
+            }
+            ListFooterComponent={
+              <Text className="mb-4 text-center text-gray-600 text-xs">Sem mais resultados</Text>
             }
           />
         </View>
