@@ -14,13 +14,21 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSCameraUsageDescription": "TCC precisa acessar sua câmera"
+      },
+      "bundleIdentifier": "com.anonymous.tccmobile"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "package": "com.anonymous.tccmobile"
     },
     "web": {
       "bundler": "metro",
@@ -29,7 +37,13 @@
     },
     "plugins": [
       "expo-router",
-      "expo-font"
+      "expo-font",
+      [
+        "react-native-vision-camera",
+        {
+          "cameraPermissionText": "TCC precisa acessar sua câmera"
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
