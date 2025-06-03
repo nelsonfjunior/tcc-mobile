@@ -20,14 +20,6 @@ export default function Layout() {
       }}
     >
       <Tabs.Screen
-        name="add-album/index"
-        options={{ href: null, tabBarStyle: { display: "none" } }}
-      />
-      <Tabs.Screen
-        name="album/[id]"
-        options={{ href: null, tabBarStyle: { display: "none" } }}
-      />
-      <Tabs.Screen
         name="add-participant/index"
         options={{
           title: "",
@@ -39,7 +31,7 @@ export default function Layout() {
         }}
       />
       <Tabs.Screen
-        name="[id]"
+        name="camera/index"
         options={{
           title: "",
           tabBarIcon: () => <Aperture className="text-gray-600" size={50} />,
@@ -56,6 +48,19 @@ export default function Layout() {
             display: "none",
           },
         }}
+      />
+
+      <Tabs.Screen
+        name="[id]"
+        options={{ href: null }}
+      />
+      <Tabs.Screen
+        name="add-album/index"
+        options={{ href: null, tabBarStyle: { display: "none" } }}
+      />
+      <Tabs.Screen
+        name="album/[id]"
+        options={{ href: null, tabBarStyle: { display: "none" } }}
       />
     </Tabs>
   );
