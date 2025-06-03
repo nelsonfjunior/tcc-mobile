@@ -39,9 +39,9 @@
       "expo-router",
       "expo-font",
       [
-        "react-native-vision-camera",
+        "expo-camera",
         {
-          "cameraPermissionText": "TCC precisa acessar sua câmera"
+          "cameraPermission": "Retro photo quer permissão para acessar a câmera"
         }
       ]
     ],
