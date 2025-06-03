@@ -8,6 +8,10 @@ export default function Layout(){
                 name="group/[id]"
                 options={{ headerShown: false }}
             />
+            <Stack.Screen
+                name="form-group"
+                options={{ headerShown: false }}
+            />
         </Stack>
     )
 }

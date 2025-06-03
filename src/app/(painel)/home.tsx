@@ -1,3 +1,4 @@
+import Dropdown from "@/src/components/dropdown";
 import { useRouter } from "expo-router";
 import { Bell, EllipsisVertical, Search } from "lucide-react-native";
 import React, { useState } from "react";
@@ -72,6 +73,7 @@ const DATA = [
 ];
 
 export default function Home() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const router = useRouter();
 
@@ -118,16 +120,29 @@ export default function Home() {
     router.navigate('/notification')
   }
 
+  function openMenu() {
+    setIsMenuOpen(curr => !curr)
+  }
+
+  function navigateToFormGroup() {
+    router.navigate('./form-group')
+  }
+
   return (
     <SafeAreaProvider>
-      <SafeAreaView className="flex gap-4 flex-1 bg-[#F6F6F6]">
+      <SafeAreaView className="flex gap-4 flex-1 bg-[#F6F6F6] relative">
+        <Dropdown open={isMenuOpen} closeOnPress={openMenu} closeOnTouchMove={() => setIsMenuOpen(false)}>
+          <Pressable onPress={navigateToFormGroup}><Text>Novo grupo</Text></Pressable>
+          <Pressable><Text>Configurações</Text></Pressable>
+        </Dropdown>
+
         <View className="w-full h-[70px] flex flex-row items-center justify-between p-5">
           <Text className="text-xl">Nome do app</Text>
           <View className="flex flex-row gap-3 text-gray-900">
             <Pressable onPress={navigateToNotifications}>
               <Bell />
             </Pressable>
-            <Pressable>
+            <Pressable onPress={openMenu}>
               <EllipsisVertical />
             </Pressable>
           </View>
@@ -142,7 +157,7 @@ export default function Home() {
             ListHeaderComponent={<ListHeader />}
           />
         </View>
-      </SafeAreaView>
+      </SafeAreaView> 
     </SafeAreaProvider>
   );
 }
